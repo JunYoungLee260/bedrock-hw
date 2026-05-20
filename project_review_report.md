@@ -8,22 +8,7 @@
 
 ## 스타일 검사 결과
 
-PEP8 및 일반적인 스타일/보안 규칙 위반 목록입니다.
-
-**[보안 위반]**
-- [22] 하드코딩된 API 키: `api_key`에 인증 토큰이 소스코드에 직접 작성되어 있어 보안 취약점입니다. 환경변수 또는 시크릿 관리 시스템으로 분리해야 합니다.
-- [87] SQL 인젝션 취약점: f-string으로 사용자 입력값을 직접 쿼리에 삽입하는 `fetch_records` 함수는 SQL 인젝션에 취약합니다. 파라미터 바인딩을 사용해야 합니다.
-- [154] XSS 취약점: `render_summary`는 입력값을 검증 없이 HTML에 삽입하여 XSS에 취약합니다.
-- [171] 예외 무시: `except Exception: pass` 패턴으로 인해 오류가 묵살되어 보안 이상 징후를 탐지할 수 없습니다.
-
-**[PEP8 스타일 위반]**
-- [34] 불필요한 비교: `len(records) == 0` 대신 `not records`를 사용하는 것이 더 Pythonic합니다.
-- [41] 비효율적인 누적 합산: `total = total + item['value']` 대신 `total += item['value']`를 사용해야 합니다.
-- [78~85, 130~136 등] 문자열 연결 방식: `"텍스트" + 변수` 형태 대신 f-string(`f"텍스트{변수}"`) 또는 `.format()`을 사용하는 것이 권장됩니다.
-- [29~31] 비효율적인 딕셔너리 순회: `for key in self.cache: result.append(self.cache[key])` 대신 `self.cache.values()`를 사용하는 것이 더 Pythonic합니다. (동일 패턴이 `search_by_tag`, `get_latest_entry` 등 여러 곳에 반복됩니다.)
-- [102~103] 단순화 가능한 조건문: `validate_token` 메서드에서 `if token == self.valid_token: return True` 다음에 `return False`를 쓰는 것보다 `return token == self.valid_token`으로 단순화할 수 있습니다.
-- [171] 디버그용 코드 잔존: `debug_dump_config` 메서드는 디버그 목적의 코드로, 프로덕션 코드에 포함되어서는 안 됩니다.
-- [전반] 클래스명 `dataPipeline` → PascalCase 위반 (`DataPipeline`으로 수정 필요)
+검색 결과에 PHP 코드 스타일 가이드 정보가 없어 스타일 관점의 검사는 제공할 수 없습니다. 그러나 검색 결과에 포함된 OWASP Top 10 기준으로 해당 PHP 코드의 보안 취약점은 다음과 같이 분석할 수 있습니다.
 
 ---
 
